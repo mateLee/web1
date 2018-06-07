@@ -21,9 +21,10 @@
   </body>
   <script>
     function change(val) {
+      var target = document.querySelector('body');
       if(val === 'night') {
-        document.querySelector('body').style.backgroundColor='black';
-        document.querySelector('body').style.color='white';
+        target.style.backgroundColor='black';
+        target.style.color='white';
         //document.getElementById('changeColor').value='day';
         document.querySelector('#changeColor').value='day';
       } else {
