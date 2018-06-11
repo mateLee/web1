@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+  <meta content="text/html"; charset="utf-8">
+  <title>geolocation</title>
+</head>
+<body>
+  <h2>위치 정보 획득</h2>
+  <div>
+    <p>위도 : <span id="latData"></span></p>
+    <p>경도 : <span id="lonData"></span></p>
+    <button type="button" title="testGeoData" onclick="geoData()">위치 정보 얻기</button>
+  </div>
+  <script type="text/javascript">
+    function geoData() {
+      if (!navigator.geolocation) {
+        alert("geolocation 을 지원하지 않습니다.");
+        return false;
+      }
+      navigator.geolocation.getCurrentPosition(function(position){
+        posData = position;
+        document.getElementById('latData').innerHTML = posData.coords.latitude;
+        document.getElementById('lonData').innerHTML = posData.coords.longitude;
+      })
+    }
+  </script>
+</body>

@@ -17,6 +17,7 @@ var Body = {
     document.querySelector('body').style.backgroundColor=color;
   }
 }
+
 function nightDayHandler(self){
   var target = document.querySelector('body');
   if(self.value === 'night') {

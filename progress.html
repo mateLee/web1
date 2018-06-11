@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>
+  <meta content="text/html"; charset="utf-8">
+  <title>progress bar</title>
+</head>
+<body>
+  <progress value="0" max="100">0%</progress>
+  <button type="button" name="button" onclick="progress()">Start</button>
+  <input type="text" name="" value="" placeholder="하하" autofocus="autofocus">
+
+  <script type="text/javascript">
+    function progress() {
+      var pro = document.querySelector('progress');
+      var proValue = pro.value;
+
+      var timer = setInterval(function () {
+        proValue += 1;
+        console.log(proValue);
+        pro.value = proValue;
+        if (proValue > 59) {
+          clearInterval(timer);
+        }
+      }, 1000);
+
+    }
+    </script>
+</body>
