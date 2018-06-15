@@ -1,0 +1,121 @@
+body {
+  background-color: #343d4c;
+  width: 100%;
+  height: 100%;
+}
+
+ul {
+  //border: 1px solid black;
+  width: 100%;
+  padding-left: 10%;
+}
+
+li {
+  display: inline;
+  padding-left: 3%;
+}
+
+a {
+  color: white;
+}
+
+p {
+  text-align: center;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+footer {
+  border: 1px solid black;
+  width: 100%;
+  height: 50px;
+  background-color: rgba(51,59,80,1);
+  bottom: 0;
+  margin-top: 10%;
+}
+
+span {
+  color: #3ff454;
+}
+
+h1 {
+  font-size: 65px;
+  letter-spacing: 10px;;
+  color: white;
+}
+
+h5 {
+  font-size: 25px;
+  color: white;
+}
+
+#content {
+  width: 50%;
+  height: 50%;
+  border: 1px solid black;
+  position: relative;
+  margin-left: 15%;
+  top: 100px;
+  padding-left: 20%;
+}
+
+
+
+#ps {
+  color: white;
+  text-align: center;
+}
+
+.inlineContent {
+  border: 1px solid black;
+  background-color: rgba(51,59,80,1);
+  width: 65%;
+  height: 450px;
+  margin-left: 15%;
+
+  position: relative;
+
+}
+
+.download {
+  border: 1px solid black;
+  width: 25%;
+  margin-left:  40%;
+  text-align: center;
+}
+
+
+.number {
+  color: #bbbcbf;
+  font-size: 50px;
+
+}
+
+.comment {
+  color: white;
+  font-size: 25px;
+  margin-top: -11%;
+  text-align: left;
+}
+
+.space {
+  /* margin-left: 0%;
+  margin-top: 50%; */
+  border: 1px solid black;
+  width: 100%;
+}
+
+
+.headline {
+  background-color: #343d4c;
+  //border: 1px solid black;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  position: relative;
+  box-shadow: 3px 5px 8px 7px #27303f;
+  opacity: 0.3;
+}

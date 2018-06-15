@@ -3,9 +3,17 @@
   <head>
     <meta charset="utf-8">
     <title>Video</title>
+
+    <style media="screen">
+      .marvel {
+        border: 1px solid black;
+
+      }
+
+    </style>
   </head>
   <body>
-    <video controls src="https://www.youtube.com/watch?v=V1qKrO_XmIo">
+    <!-- <video controls src="https://www.youtube.com/watch?v=V1qKrO_XmIo">
 
     </video>
     <audio src="https://www.youtube.com/watch?v=_zWN7EhZGSk">
@@ -14,7 +22,29 @@
 
     <object type="text/htlm" data="https://www.youtube.com/watch?v=V1qKrO_XmIo">
 
-    </object>
+    </object> -->
+    <div>
+        <img id="marvel" src="marimg.jpg" onclick="pop()">
+    </div>
+    <div id="dim-layer" style="position:absolute;z-index:999;display:none; width:100%; height:90%; background: none rgba(0, 0, 0, 0.9); filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#80000000', endColorstr='#80000000');" align='center'>
+
+    <video src="marvel.mp4"  autoplay ></video>
+    <font size='3' color='white' onclick='CloseSearch()'>Close</font>
+
+    </div>
+
+
+    <script type="text/javascript">
+
+
+      function pop() {
+        document.getElementById('dim-layer').style.display='inline';
+      }
+
+      function CloseSearch() {
+        document.getElementById('dim-layer').style.display='none';
+      }
+    </script>
 
   </body>
 </html>

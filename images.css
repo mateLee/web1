@@ -1,0 +1,36 @@
+.backImg {
+  border: 1px solid black;
+  background-color: #343d4c;
+  position: relative;
+  opacity: 0.3;
+  width: 100%;
+  height: 25%;
+
+
+}
+
+.backImg2 {
+  background-color: #343d4c;
+  position: relative;
+  width: 100%;
+  height: 25%;
+  opacity: 0.3;
+  margin-top: 35%;
+
+}
+
+#firstImg {
+  left: 0;
+  top: 0;
+  width: inherit;
+  max-width: 100%;
+  //opacity: 0.7;
+  object-fit: cover;
+  position: relative;
+}
+
+#secondImg {
+  width: inherit;
+  max-width: 100%;
+  object-fit: cover;
+}

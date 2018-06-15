@@ -3,52 +3,68 @@
   <head>
     <title>WEB1 - Welcome</title>
     <meta charset="utf-8"/>
-    <style>
-      #headline{
-        position : absolute;
-        left : 0px;
-        margin-left : 0px;
-        width : 100%;
-        min-width : 980px;
-        top : 0px;
-        height : 69px;
-      }
-      #nav_header{
-        left : 194px;
-        width: 756px;
-        position: absolute;
-        margin-left: calc((100% - 980px) * 0.5);
-        top: 8px;
-        height: 50px;
-        overflow-x: visible;
-      }
-      #main{
-        width: 53px;
-        height: 50px;
-        position: relative;
-        box-sizing: border-border-box;
-        overflow: visible;
-      }
-    </style>
-  </head>
-  <body style="background-color:rgb(112,122,137)">
-    <div id="root">
-      <div id="headline">
-        <nav id="nav_header">
-          <ul style="text-align: left" aria-label="site navigation" role="navigation">
-            <li id="main">
-              <a href="" role="button" id="" class="">
+    <link rel="stylesheet" href="/default.css">
+    <link rel="stylesheet" href="/images.css">
 
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <input type="color" name="" value="">
-        <progress value="0" max="60">0%</progress>
-        <button type="button" name="button" onclick="progress()">Start</button>
-        
+  </head>
+  <body>
+
+
+    <div class="headline">
+       <nav>
+         <ul>
+           <a href=""><li>메인</li></a>
+           <a href=""><li>경력사항</li></a>
+           <a href=""><li>포트폴리오</li></a>
+           <a href=""><li>문의</li></a>
+         </ul>
+       </nav>
+
+       <div class="backImg">
+         <img id="firstImg" src="peple.jpg" alt="">
+       </div>
+    </div>
+
+    <div id="content">
+      <div class="mainText">
+        <h1>I<span>'</span>M<br>
+        A UX/UI <br> DESIGNER<span>.</span></h1>
+        <h5>한 차원 다른 UX/UI 디자이너 및 <br> 웹 개발자를 찾으십니까?</h5>
       </div>
     </div>
+
+    <div class="inlineContent">
+      <p>이력서 내용이 들어갈 부분</p>
+      <div class="download">
+        <a href="resume.html">이력서 다운로드</a>
+      </div>
+    </div>
+
+
+    <div class="backImg2">
+      <img id="secondImg" src="download.jpg" alt="">
+    </div>
+
+
+
+
+
+    <div class="space">
+      <!-- <div class="mainText"> -->
+        <h1>
+          <span class="number">01</span> 전문성을 약속합니다!</p><br>
+          <p class="comment">지난 10년간 쌓아온 전문성을 확인하세요.</p>
+        </h1>
+      </div>
+
+
+
+
+      <footer>
+        <p id="ps">@ 2018 Make by goms</p>
+      </footer>
+
+
   </body>
   <script type="text/javascript">
     function progress() {
@@ -65,6 +81,23 @@
       }, 1000);
 
     }
+
+  function getMouse(e){
+    return {x:e.clientX,y:e.clientY};
+  }
+
+  // mouse position example
+  // document.onmousemove=function(e){
+  //   var mousePosition = getMouse(e);
+  //   console.log(mousePosition.x+', '+mousePosition.y)
+  // }
+  // mouse wheel example
+  document.onmousewheel=function (e){
+    var top = document.documentElement.scrollTop;
+    console.log(top);
+    var img2 = document.querySelector(".backImg2");
+    img2.styel.transform.translate3d=('0px','50px','0px');
+  }
 
 
   </script>
