@@ -32,8 +32,8 @@
 
       video.setAttribute('src', 'marvel.mp4');
       video.setAttribute('autoplay', 'autoplay');
-      video.setAttribute('controls', 'on');
-      video.setAttribute('loop', 'on');
+      video.setAttribute('controls', 'true');
+      video.setAttribute('loop', 'true');
       // 브라우저의 height 크기의 반절로 영상의 크기 조절
       video.setAttribute('style', 'height: ' + height / 2 +  'px;');
 
@@ -41,13 +41,57 @@
       lay.appendChild(lay2);
       bo.appendChild(lay);
 
-      // layPop 아이디로 된 부분 클릭시 이벤트 제거 
+      // layPop 아이디로 된 부분 클릭시 이벤트 제거
       var remove = document.getElementById('layPop');
       remove.addEventListener('click', function(){
         remove.remove();
       })
 
     });
+  </script>
+  <script>
+    // browser resize
+
+    // resize 체크
+    window.addEventListener('resize', layerCheck);
+    // 레이어팝업 체크
+    function layerCheck() {
+      var popCheck = document.getElementById('layPop');
+      if (popCheck == null) {
+        return;
+      } else {
+        sizeCheck();
+      }
+    }
+    // 사이즈체크 후 팝업 적용
+    function sizeCheck(){
+      var x = window.innerWidth;
+      var y = window.innerHeight;
+
+      var videoSize = document.querySelector('video');
+
+      console.log(x+", "+y);
+
+      x = x / 2;
+      y = y / 2;
+
+      videoSize.style.width = x+'px';
+      videoSize.style.height = y+'px';
+
+
+    }
+
+    // var videoCheck = document.getElementById('layPop');
+    //
+    // if (videoCheck == null) {
+    //   console.log("layPop is null");
+    // } else {
+    //   window.addEventListener('resize', function() {
+    //     var x = window.innerWidth;
+    //     var y = window.innerHeight;
+    //     console.log(x+", "+y);
+    //   });
+    // }
 
 
   </script>
