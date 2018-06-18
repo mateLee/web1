@@ -14,11 +14,10 @@
     <img src="marimg.jpg" alt="" id="marid">
   </body>
   <script>
-
+    // layer pop up script
     var element = document.getElementById('marid');
     element.addEventListener('click', function pop(){
       var height = window.innerHeight;
-      height = height / 2;
 
       var bo = document.querySelector('body');
       var lay = document.createElement('div');
@@ -26,20 +25,23 @@
       var video = document.createElement("video");
 
       lay.setAttribute('id', 'layPop');
-      lay.setAttribute('style', 'position: fixed; top:0; width:100%; height: 100%; background-color: rgba(0,0,0,.5); z-index: 999999;');
-
-      lay2.setAttribute('style', 'position: fixed; top:0; left:50%; transform: translateX(-50%);');
+      // zindex 로 모든 태그들의 위로 지정 및 백그라운드 컬로 불투명하게 조절
+      lay.setAttribute('style', 'position: fixed; top:0; width:100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 9999;');
+      // translate(수평, 수직) 지정된 거리만큼 요소 이동
+      lay2.setAttribute('style', 'position: fixed; top:0; left:50%; transform: translate(-50%, 50%);');
 
       video.setAttribute('src', 'marvel.mp4');
       video.setAttribute('autoplay', 'autoplay');
       video.setAttribute('controls', 'on');
       video.setAttribute('loop', 'on');
-      video.setAttribute('style', 'height: ' + height +  'px; margin-top: 25%');
+      // 브라우저의 height 크기의 반절로 영상의 크기 조절
+      video.setAttribute('style', 'height: ' + height / 2 +  'px;');
 
       lay2.appendChild(video);
       lay.appendChild(lay2);
       bo.appendChild(lay);
 
+      // layPop 아이디로 된 부분 클릭시 이벤트 제거 
       var remove = document.getElementById('layPop');
       remove.addEventListener('click', function(){
         remove.remove();
