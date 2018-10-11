@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="/resources/workspace/js/service/HuskyEZCreator.js">
+    </script>
+    <!-- <script type="text/javascript" src="/5/ckeditor.js"></script> -->
+    <!-- <script type="text/javascript" src="/ckeditor/ckeditor.js"></script> -->
+    <script type="text/javascript" src=/jquery-3.3.1.min.js>
+
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="head">
+        <p>writing</p>
+      </div>
+      <div class="textarea">
+        <textarea id="name" name="name" rows="8" cols="80">
+
+        </textarea>
+      </div>
+
+      <!-- ckeditor5 -->
+      <!-- <div class="">
+        <textarea name="content" id="editor" rows="8" cols="80"></textarea>
+        <script>
+          ClassicEditor.create(document.getElementById('editor')
+          ).catch(error=>{console.log(error);});
+        </script>
+      </div> -->
+
+<!-- <form class="" action="/boardDetail.html" name="frm" method="get" id="frm">
+      <div class="">
+        //<textarea name="editor4" id="editor4" rows="8" cols="80"></textarea>
+        <textarea name="name" id="name" rows="8" cols="80"></textarea>
+        <script type="text/javascript">
+          CKEDITOR.replace('editor4');
+        </script>
+
+
+          <button type="submit" id="btn" name="button">SUBMIT</button>
+
+      </div>
+</form> -->
+    </div>
+
+  </body>
+  <script type="text/javascript">
+    // let submit = document.querySelector('button');
+    // submit.addEventListener('click', function() {
+      // var a = document.getElementById('editor4');
+      // var b = CKEDITOR.instances.editor4.updateElement();
+      // console.log(a);
+      // console.log(b);
+    //   var obj =  new Object();
+    //   obj.name = document.getElementById('name').value;
+    //   var jsonData = JSON.stringify(obj);
+    //   console.log(jsonData);
+    // })
+
+    // var btn = document.getElementById('btn');
+    // btn.addEventListener('click', function(){
+    //   var name = document.getElementById('name').value;
+    //   var jdata = {'name':name};
+    //
+    //   $.ajax({
+    //     url: 'boardDetail.html',
+    //     type: 'GET',
+    //     data: jdata,
+    //     success:function(data) {
+    //       window.location.href='https://127.0.0.1/boardDetail.htmnl';
+    //       self.close();
+    //     },
+    //     error: function(){
+    //       console.log('error');
+    //       self.close();
+    //     }
+    //
+    //   })
+    // });
+  </script>
+  <script type="text/javascript">
+    var oEditors = [];
+    nhn.husky.EZCreator.createInIFrame({
+      oAppRef: oEditors,
+      elPlaceHolder: "name",
+      sSkinURI: "/resources/workspace/SmartEditor2Skin.html",
+      fCreator: "createSEditor2"
+    });
+
+    function submitContents(elClickedObj) {
+    // 에디터의 내용이 textarea에 적용됩니다.
+      oEditors.getById["name"].exec("UPDATE_CONTENTS_FIELD", []);
+    // 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("ir1").value를 이용해서 처리하면 됩니다.
+    }
+  </script>
+</html>

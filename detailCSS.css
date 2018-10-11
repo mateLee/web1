@@ -1,0 +1,139 @@
+
+body {
+  overflow: hidden;
+}
+.clear{
+  clear: both;
+}
+.container {
+  top: 0;
+  left: 0;
+  border: 1px solid green;
+
+}
+.video_container {
+  border: 1px solid red;
+
+  position: relative;
+
+  float: left;
+  background-color: gray;
+
+}
+
+.video_controls {
+  border: 5px solid pink;
+  /* position: absolute; */
+
+}
+
+.file_container {
+  border: 2px solid blue;
+  /* left: 0;
+  top: 0; */
+  float: left;
+  position: relative;
+}
+
+.x-layer {
+  border: 3px solid red;
+  /* float: left; */
+
+  /* width: 100px;
+  height: 100px; */
+  position: relative;
+  /* z-index: 1; */
+}
+
+.y-layer {
+  border: 3px solid blue;
+  top: 0;
+  float: right;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  /* z-index: 1; */
+}
+
+.right_container {
+  border: 3px solid gray;
+  /* float: right; */
+  /* right: : 0; */
+  top: 0;
+  /* width: 0; */
+  /* float: right; */
+  position: absolute;
+  /* position: relative; */
+  /* background-color: black; */
+  background-color: rgb(34,34,34);
+}
+
+.info-container {
+  border: 2px solid orange;
+  /* height: 30%; */
+}
+
+.note-container {
+  border: 2px solid yellow;
+  /* height: 5%; */
+  position: relative;
+  background-color: rgba(59,59,59.1);
+}
+
+
+video {
+  display: inline-block;
+  object-fit: contain;
+  /* float: left; */
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+#canvas {
+  display: none;
+  border: 5px solid yellow;
+  /* object-fit: contain; */
+  position: absolute;
+  cursor: crosshair;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.canvas_tool {
+  border: 3px solid green;
+  float: left;
+  width: 4%;
+  height: 94%;
+  display: none;
+}
+
+#textarea {
+  /* margin-left: 1%;
+  margin-right: 1%;
+  margin-top: 1%;
+  margin-bottom: 1%; */
+  position: absolute;
+  background-color: rgba(85,85,85,1);
+  /* width: 100%; */
+  /* margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0; */
+}
+
+.note-cotrols {
+  border: 1px solid red;
+  color: white;
+}
+
+.team-select {
+  /* background-color: rgba(85,85,85,1); */
+}

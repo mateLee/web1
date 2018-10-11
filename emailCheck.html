@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Email Validation</title>
+    <style>
+      .email-box {
+        position: absolute;
+        left: 10%;
+        top: 10%;
+      }
+
+      #email {
+        width: 200px;
+        height: 30px;
+      }
+
+      #emailBtn {
+        width: 200px;
+        height: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="">
+      <input type="email" name="" value="" id="email">
+      <input type="submit" name="" value="submit" id="eBtn">
+      <div class="">
+        <input id="eok" type="text" name="" value="" style="border: 1px solid green;" disabled />
+        <input id="eerr" type="text" name="" value="" style="border: 1px solid red; display: none;" disabled />
+      </div>
+    </div>
+    <div class="">
+      <input type="password" name="" value="" id="pw">
+      <input type="submit" name="" value="submit" id="pBtn">
+      <div class="">
+        <input id="pok" type="text" name="" value="" style="border: 1px solid green;" disabled />
+        <input id="perr" type="text" name="" value="" style="border: 1px solid red; display: none;" disabled />
+      </div>
+    </div>
+  </body>
+  <script>
+    let e = document.getElementById('email');
+    let eBtn = document.getElementById('eBtn');
+    let p = document.getElementById('pw');
+    let pBtn = document.getElementById('pBtn');
+    let eReg = /^[0-9a-zA-Z][0-9a-zA-Z\_\-\.\+]+[0-9a-zA-Z]@[0-9a-zA-Z][0-9a-zA-Z\_\-]*[0-9a-zA-Z](\.[a-zA-Z]{2,6}){1,2}$/;
+    let pReg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,16}/;
+
+    eBtn.addEventListener('click', function() {
+      let val = e.value;
+      if (eReg.test(val)) {
+        let eok = document.getElementById('eok');
+        eok.value = val;
+      } else {
+        let eerr = document.getElementById('eerr');
+        eerr.value = val;
+        eerr.setAttribute.style.display = 'inline';
+      }
+    });
+
+    pBtn.addEventListener('click', function() {
+      let val = p.value;
+      if (pReg.test(val)) {
+        let pok = document.getElementById('pok');
+        pok.value = val;
+      } else {
+        let perr = document.getElementById('perr');
+        perr.value = val;
+        perr.style.display = 'inline';
+      }
+    });
+  </script>
+</html>

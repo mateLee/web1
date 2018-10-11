@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/detailCSS.css">
+    <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+  </head>
+  <body>
+    <!-- <input type="button" id="cbtn" value="canvas"> -->
+
+    <div class="container">
+
+      <div class="video_container">
+        <!-- <div class="center-box"> -->
+          <video id="video" src="/video/graphic1.mp4" loop autoplay ></video>
+        <!-- </div> -->
+
+        <!-- <div class="canvas_tool">
+
+        </div> -->
+        <canvas id="canvas"></canvas>
+
+        <div class="video_controls" id="vcont">
+          <input type="button" id="pbtn" value="play">
+          <input type="range" value="0" id="seekBar">
+          <input type="button" name="" value="T/F" id="tf">
+          <span id="curtime"></span> <span id="sub">/</span> <span id="durtime"></span>
+          <!-- <button type="button" id="mute">Mute</button> -->
+          <!-- <input type="range" id="volumeBar" min="0" max="1" step="0.1" value="1"> -->
+          <!-- <input type="button" id="fullScreen" value='[]'> -->
+          <!-- <input type="text" name="" value="0" id="fps"> -->
+          <span id="fps" style="display:none;">0</span>
+
+          <input type="button" id="cbtn" value="canvas">
+          <input type="button" id="color" value="  " class="colors" style="background-color:black;"/>
+          <select name="" id="lineWidth">
+            <option selected value="2">2</option>
+            <option value="4">4</option>3
+            <option value="6">6</option>
+          </select>
+          <input type="button" id="down" value="download">
+          <!-- <input type="button" id="selectColor" value="  " style="border: 2px solid; background-color:white; display: none;" onclick="changeLineColor(this)"/> -->
+          <!-- <input type="button" id="zoom_in" value="zoom_in">
+          <input type="button" id="zoom_out" value="zoom_out">
+          <input type="button" id="z_reset" value="reset">
+          <input type="button" id="move" value="stop"> -->
+        </div>
+      </div>
+
+
+
+      <!-- <div class="clear"></div> -->
+      <div class="file_container">
+        <div class="x-layer">
+  x
+        </div>
+
+      </div>
+<div class="clear"></div>
+<div class="y-layer">
+
+</div>
+      <div class="right_container">
+
+
+        <div class="info-container">
+        <!-- <span id="currentFrame">0</span> -->
+        </div>
+        <div class="note-container" id="id">
+          <!-- <div class="note-cotrols">
+            Team
+            <select class="team-select" name="">
+              <option value="none">none</option>
+              <option value="PM">PM</option>
+              <option value="FX">FX</option>
+              <option value="3D">3D</option>
+              <option value="2D">2D</option>
+            </select>
+          </div> -->
+          <textarea id="textarea" name="name" rows="2" cols="80"></textarea>
+          <script>
+
+          </script>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="/videoFrame.js"></script>
+  <script type="text/javascript" src="/detail.js"></script>
+  <script type="text/javascript" src="/testcontrols.js"></script>
+  <script type="text/javascript" src="/canvasControls.js"></script>
+  <script type="text/javascript" src="/ckControls.js"></script>
+</html>

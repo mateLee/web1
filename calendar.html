@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Calendar</title>
+
+    <!-- <style media="screen">
+      table{
+        border: 1px solid black;
+      }
+      th {
+        border: 1px solid black;
+      }
+      tr{
+        border: 1px solid black;
+      }
+    </style> -->
+    <script type="text/javascript" src="/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="/jquery-ui-1.12.1.custom/jquery-ui.css"></script>
+    <script type="text/javascript" src="/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+
+    <script>
+      $.datepicker.setDefaults({
+        dateFormat: 'yy-mm-dd',
+        prevText: '이전 달',
+        nextText: '다음 달',
+        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+        monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+        showMonthAfterYear: true,
+        yearSuffix: '년'
+      });
+
+      $(function() {
+        $("#datepicker").datepicker();
+    });
+    </script>
+  </head>
+  <body>
+    <div class="calendar">
+      <h3>calendar</h3>
+      <div class="wrapper">
+        <input type="text" id="datepicker" placeholder="날짜를 선택하세요." readonly="true" />
+        <i class="ion-calendar"></i>
+      </div>
+      <!-- <div id="box">
+        <input type="button" name="" value="btn" onclick="setCalendar()" id="datepicker"/>
+        <input type="text" id="datepicker" placeholder="날짜를 선택하세요." readonly='true'/>
+
+
+      </div> -->
+    </div>
+  </body>
+  <script>
+
+    // let date;
+    // let year;
+    // let month;
+    // let day;
+    // let firstDay;
+    // let leap;
+    //
+    // // 달력셋팅
+    // function setCalendar() {
+    //   date = new Date();
+    //   year = date.getFullYear();
+    //   month = date.getMonth();
+    //   day = date.getDate();
+    //
+    //   setFirstDay(year, month);
+    //   leapCheck(year, leap);
+    //
+    //   makeCalendar(year, month,day, firstDay, leap);
+    // }
+    //
+    // // 월의 1일 요일찾기
+    // function setFirstDay(year, month) {
+    //   // week index 0 == 일요일 부터 시작
+    //   firstDay = new Date(year, month, 1).getDay();
+    // }
+    //
+    // function leapCheck(year, leap) {
+    //   let y = parseInt(year);
+    //   if (y % 4 == 0 && y % 100 != 0 || y % 400 == 0) {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // }
+    //
+    // function makeCalendar(year, month,day, firstDay, leap) {
+    //   let table = document.createElement('table');
+    //   table.setAttribute('id', 'cal');
+    //   let tr = document.createElement('tr');
+    //   let thY = document.createElement('th');
+    //   let week = new Array('sun', 'mon', 'thu', 'wed', 'thu', 'fri', 'sat')
+    //
+    //
+    //   thY.innerText = year + 'year ' + month + 'month';
+    //   tr.appendChild(thY);
+    //   table.appendChild(tr);
+    //
+    //   tr = document.createElement('tr');
+    //
+    //   for (var i = 0; i < week.length; i++) {
+    //     var th = document.createElement('th');
+    //     th.innerText = week[i];
+    //     tr.appendChild(th);
+    //   }
+    //
+    //   table.appendChild(tr);
+    //
+    //   let no = 1;
+    //   let cell = 0;
+    //   let we = Math.ceil((30+firstDay)/7);
+    //
+    //   for (var i = 0; i < we; i++) {
+    //     tr = document.createElement('tr');
+    //     for (var r = 0; r < 7; r++) {
+    //       if (cell < firstDay || no > 31) {
+    //         var th = document.createElement('th');
+    //         tr.appendChild(th);
+    //         cell++;
+    //       } else {
+    //         var th = document.createElement('th');
+    //         th.innerText = no;
+    //         tr.appendChild(th);
+    //         no++;
+    //       }
+    //     }
+    //     table.appendChild(tr);
+    //   }
+    //
+    //
+    //
+    //
+    //   document.getElementById('box').appendChild(table);
+    //
+    // }
+
+
+  </script>
+</html>

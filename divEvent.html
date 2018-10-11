@@ -1,0 +1,117 @@
+<script type="text/javascript">
+  // 1. 가로 영역 움직이기
+  // 2. 세로 영역 움직이기
+  // 3. 분할별 비율 맞추기
+</script>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>div sample</title>
+  </head>
+  <body>
+    <div class="x-layer" style="position: relative;border: 1px solid black;">
+      <div class="" id="x-x" style="left:0;position: absolute;border: 3px solid gray;">
+
+      </div>
+      <div class="" id="x-y" style="position: relative;border: 3px solid gray;">
+
+      </div>
+    </div>
+  </body>
+  <script>
+    window.onload = onjs;
+    window.onresize = browserCheck;
+
+    var winWidth, winHeight, x, xx, xy, xxh, xyw;
+    function onjs() {
+
+      x = document.querySelector('.x-layer');
+      xx = document.querySelector('#x-x');
+      xy = document.querySelector('#x-y');
+
+      x.style.width = window.innerWidth;
+      x.style.height = window.innerHeight;
+      xx.style.top = window.innerHeight * 0.7;
+      xx.style.width = window.innerWidth * 0.7;
+      xy.style.top = '-6px';
+      xy.style.left = window.innerWidth * 0.7;
+      xy.style.width = '0px';
+      xy.style.height = window.innerHeight;
+
+      xx.addEventListener('mousedown', mousePoint, false);
+
+    }
+
+    // 창의 스코롤바 위치 가져오기 x, y 프로퍼티로 현재 스크롤바 오프셋 반환
+    function getScrollOffsets() {
+      let win = window;
+      if (win.pageXOffset != null) {
+
+        return {x : win.pageXOffset, y : win.pageYOffset};
+      }
+
+      var d = w.document;
+      if (document.compatMod == "CSS1Compat") {
+        return {x:d.documentElement.scrollLeft, y:d.documentElement.scrollTop};
+      }
+
+      return {x:d.body.scrollLeft, y:d.body.scrollTop};
+    }
+
+    // div 마우스다운시 해당 마우스 좌표구하기
+    let target, moveY, scroll;
+    function mousePoint() {
+      target = event.toElement;
+      // scroll = getScrollOffsets();
+      let orgiY = target.offsetTop;
+      // let mY = event.clientY + scroll.y;
+      let mY = event.clientY;
+
+      moveY = mY - orgiY;
+
+      if (document.addEventListener) {
+        document.addEventListener('mousemove', mouseHandler, true);
+        document.addEventListener('mouseup', upHandler, true);
+      }
+    }
+
+    function mouseHandler(e){
+      if (!e) {
+        e = window.event;
+      }
+      // var scroll = getScrollOffsets();
+      // target.style.left = (e.clientX - moveY) + "px";
+      // target.style.top = (e.clientY + scroll.y - moveY) + "px";
+      target.style.top = (e.clientY - moveY) + "px";
+      e.stopPropagation();
+    }
+
+    function upHandler(e){
+      if (!e) {
+        e = window.event;
+      }
+
+      document.removeEventListener('mouseup', upHandler,  true);
+      document.removeEventListener('mousemove', mouseHandler,  true);
+
+      e.stopPropagation();
+    }
+
+    // 브라우저 크기감지
+    function browserCheck() {
+      console.log(window.innerWidth+' : '+window.innerHeight);
+      winWidth = window.innerWidth;
+      winHeight = window.innerHeight;
+
+      x.style.width = winWidth;
+      x.style.height = winHeight;
+      divWHvalue();
+    }
+
+
+
+
+
+  </script>
+</html>

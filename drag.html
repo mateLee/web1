@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>drag test</title>
+  </head>
+  <body>
+
+    <img src="/siromaro/1.jpg" alt="" style="position:absolute; left:100px; top:100px">
+    <div class="" style="position: absolute; border: 1px solid red; width:100px; height:100px;" onmousedown="drag(this, event)">
+
+    </div>
+
+  </body>
+  <script type="text/javascript">
+    // 창의 스코롤바 위치 가져오기 x, y 프로퍼티로 현재 스크롤바 오프셋 반환
+    function getScrollOffsets() {
+      let win = window;
+      if (win.pageXOffset != null) {
+
+        return {x : win.pageXOffset, y : win.pageYOffset};
+      }
+
+      var d = w.document;
+      if (document.compatMod == "CSS1Compat") {
+        return {x:d.documentElement.scrollLeft, y:d.documentElement.scrollTop};
+      }
+
+      return {x:d.body.scrollLeft, y:d.body.scrollTop};
+    }
+
+    function drag(elementToDrag, event) {
+      // 최초의 마우스 좌료를 문서 좌표계로 변환
+      var scroll = getScrollOffsets();
+      var startX = event.clientX + scroll.x;
+      var startY = event.clientY + scroll.y;
+
+      // 드레그 할 요소의 문서 좌표상의 원래 좌표
+      // elementToDrag 가 절대위치이므로 이 요소의 offsetParent는 문서의 body 요소라고 가정한다.
+      var orgiX = elementToDrag.offsetLeft;
+      var orgiY = elementToDrag.offsetTop;
+
+      // mousedown 이벤트가 발생한 위치와 이 요소의 상단 좌측 모서리 간의 거리를 계산한다.
+      // 마우스를 움직이면 이 거리를 유지하며 요소를 움직인다.
+      var deltaX = startX - orgiX;
+      var deltaY = startY - orgiY;
+      // mousedown 이벤트 이후에 뒤따라 발생하는 mousemove와 mouseup 이벤트에 반응할 이벤트 핸들러 등록한다.
+      if (document.addEventListener) { // 표준이벤트 모델
+        // 문서 캡처링 이벤트 핸들러 등록
+        document.addEventListener("mousemove", moveHandler, true);
+        document.addEventListener("mouseup", upHandler, true);
+      }
+
+      //이벤트가 처리하고 전파를 막는다.
+      if (event.stopPropagation) {
+        event.stopPropagation();
+      }
+
+      //모든 기본동작을 막는다.
+      if (event.preventDefault) {
+        event.preventDefault();
+      }
+
+      // 이벤트
+      function moveHandler(e){
+        if (!e) {
+          e = window.event;
+        }
+        var scroll = getScrollOffsets();
+        elementToDrag.style.left = (e.clientX + scroll.x - deltaX) + "px";
+        elementToDrag.style.top = (e.clientY + scroll.y - deltaY) + "px";
+
+        // var a = document.querySelector('img');
+        // var orga = a.style.left;
+        // a.style.left = (parseInt(orga) + (e.clientX + scroll.x - deltaX)) + "px";
+
+
+        e.stopPropagation();
+      }
+
+      // 이벤트
+        function upHandler(e){
+        if (!e) {
+          e = window.event;
+        }
+
+        document.removeEventListener('mouseup', upHandler,  true);
+        document.removeEventListener('mousemove', moveHandler,  true);
+
+        e.stopPropagation();
+      }
+    }
+
+  </script>
+</html>

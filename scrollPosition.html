@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>scroll 위치 변경</title>
+    <style media="screen">
+      li{
+        display: inline;
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <nav>
+        <ul>
+          <a href="javascript:void(0)" onclick="menuPoint()"><li>img</li></a>
+          <a href="javascript:void(0)" onclick="menuPoint()"><li>video</li></a>
+          <a href="javascript:void(0)" onclick="menuPoint()"><li>img2</li></a>
+        </ul>
+      </nav>
+    </div>
+
+    <div id="img" class="box" style="border:2px solid red">
+      <img id="1" src="/siromaro/1.jpg" alt="" onclick="selectPoint()">
+      <img id="2" src="/siromaro/2.jpg" alt="" onclick="selectPoint()">
+      <img id="3" src="/siromaro/3.jpg" alt="" onclick="selectPoint()">
+      <img id="4" src="/siromaro/4.jpg" alt="" onclick="selectPoint()">
+      <img id="5" src="/siromaro/5.jpg" alt="" onclick="selectPoint()">
+      <img id="6" src="/siromaro/6.jpg" alt="" onclick="selectPoint()">
+    </div>
+
+    <div id="video" class="box" style="border:2px solid blue">
+      <video id="7" src="/video/marvel.mp4" autoplay onclick="selectPoint()"></video>
+      <video id="8" src="/video/bingle.mp4" autoplay onclick="selectPoint()"></video>
+    </div>
+
+    <div id="img2" class="box" style="border:2px solid green">
+      <img id="9" src="/siromaro/1.jpg" alt="" onclick="selectPoint()">
+      <img id="10" src="/siromaro/2.jpg" alt="" onclick="selectPoint()">
+    </div>
+  </body>
+  <script type="text/javascript">
+  // 메뉴 클릭시 해당 요소로 위치 이동
+  //
+    function menuPoint(){
+      var e = window.event;
+      var name = e.target.innerText;
+      var target = document.getElementById(name);
+      var moveY = target.getBoundingClientRect().y;
+
+      scroll(0,moveY);
+    }
+
+  // 요소 클릭시 해당 요소의 y 값으로 위치 이동
+  // 스크롤의 y 값을 구하여 요소의 위치값 만큼 이동
+    function selectPoint(){
+      var e = window.event;
+      var target = e.target;
+      var scrolleY = window.scrollY;
+      var targetY = target.getBoundingClientRect().y
+
+      scroll(0, scrollY+targetY);
+    }
+  </script>
+</html>

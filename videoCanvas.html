@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>canvas 사용한 video 썸네일 얻기</title>
+  </head>
+  <body>
+    <div id="video-container">
+      <video src="/video/graphic1.mp4" autoplay id="video-element" controls></video>
+      <div id="video-controls">
+        <button type="button" id="play-pause">Play</button>
+        <input type="range" value="0" id="seekBar">
+        <span id="curtimetext"></span> / <span id="durtimetext"></span>
+        <button type="button" id="mute">Mute</button>
+        <input type="range" id="volumeBar" min="0" max="1" step="0.1" value="1">
+        <button type="button" id="fullScreen">Full Screen</button>
+      </div>
+    </div>
+
+  <span id="currentFrame">0</span>
+
+
+    <div id="canvas-container">
+      <canvas id="canvas-element"></canvas>
+      <input type="button" id="line_color" value="  " class="colors" style="background-color:black;"/><br/>
+      <input type="button" value="  " class="colors" style="border: 1px solid; background-color:white" onclick="changeLineColor(this)"/>
+      <input type="button" value="  " class="colors" style="border: none; background-color:black" onclick="changeLineColor(this)"/>
+      <input type="button" value="  " class="colors" style="border: none; background-color:gray" onclick="changeLineColor(this)"/>
+      <input type="button" value="  " class="colors" style="border: none; background-color:red" onclick="changeLineColor(this)"/><br/>
+      <input type="button" value="  " class="colors" style="border: none; background-color:yellow" onclick="changeLineColor(this)"/>
+      <input type="button" value="  " class="colors" style="border: none; background-color:blue" onclick="changeLineColor(this)"/>
+      <input type="button" value="  " class="colors" style="border: none; background-color:orange" onclick="changeLineColor(this)"/>
+      <input type="button" value="  " class="colors" style="border: none; background-color:green" onclick="changeLineColor(this)"/>
+       <button type="button" name="button" id="down">download</button>
+
+    </div>
+  </body>
+  <script src="/videoFrame.js"></script>
+  <script src="/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript">
+    // video 메타 데이터 로드 대기
+    // var video = document.querySelector('#video-element');
+
+    // var currentFrame = document.getElementById('currentFrame');
+    var currentFrame = $('#currentFrame');
+      var vi = VideoFrame({
+        id:'video-element',
+        frameRate: 24,
+        callback: function(frame) {
+          currentFrame.html(frame);
+
+        }
+      });
+
+      $('#play-pause').click(function(){
+    if(vi.video.paused){
+        vi.video.play();
+        vi.listen('frame');
+        $(this).html('Pause');
+    }else{
+        vi.video.pause();
+        vi.stopListen();
+        $(this).html('Play');
+    }
+});
+    var video = vi.video;
+      // video.muted = true;
+        var canvas = document.querySelector('#canvas-element');
+    // video meta data is loaded
+
+    console.log('x:y =' + video.videoWidth + ':'+video.videoHeight);
+    video.addEventListener('loadedmetadata', function (){
+      canvas.width = video.videoWidth / 2;
+      canvas.height = video.videoHeight / 2;
+      console.log('x:y =' + video.videoWidth + ':'+video.videoHeight);
+      console.log('x:y =' + canvas.width + ':'+canvas.height);
+    });
+
+    var ca;
+    video.addEventListener('timeupdate', function (){
+      ca = canvas.getContext('2d');
+      // 최근 비디오 프레임 컨버스에 그리기
+      ca.drawImage(video, 0,0, canvas.width, canvas.height);
+
+      canvas.addEventListener('mousedown', listener);
+      canvas.addEventListener('mousemove', listener);
+      canvas.addEventListener('mouseup', listener);
+      canvas.addEventListener('mouseout', listener);
+
+    });
+
+    var pos = {
+      drawable: false,
+      x: -1,
+      y: -1
+    };
+
+    var col = 'black';
+    var line_color = document.getElementById('line_color').style.backgroundColor;
+    function changeLineColor(btn) {
+      col = btn.style.backgroundColor;
+      line_color.style.backgroundColor = col;
+    }
+
+
+    function listener(event) {
+      let et = event.type;
+      switch (et) {
+        case "mousedown":
+            initDraw(event);
+          break;
+        case "mousemove":
+          if(pos.drawable){
+            draw(event);
+          }
+          break;
+        case "mouseout":
+        // case "mouseup":
+          finisDraw();
+          break;
+      }
+    }
+
+    function initDraw(event){
+      ca.beginPath();
+      pos.drawable = true;
+      var coors = getPosition(event);
+      pos.X = coors.X;
+      pos.Y = coors.Y;
+      ca.moveTo(pos.X, pos.Y);
+    }
+
+    function draw(event){
+      var coors = getPosition(event);
+      ca.lineTo(coors.X, coors.Y);
+      pos.X = coors.X;
+      pos.Y = coors.Y;
+      ca.strokeStyle = 'red'; // 선색지정
+      ca.stroke();
+    }
+
+    function finisDraw(event) {
+      pos.drawable = false;
+      pos.X = -1;
+      pos.Y = -1;
+    }
+
+    function getPosition(event) {
+      var x = event.pageX - canvas.offsetLeft;
+      var y = event.pageY - canvas.offsetTop;
+      return {X:x,Y:y};
+    }
+
+    var v, curtimetext, durtimetext, ptn, see;
+
+    window.onload = testControls;
+
+    function testControls() {
+
+      v = document.getElementById('video-element');
+      curtimetext = document.getElementById('curtimetext');
+      durtimetext = document.getElementById('durtimetext');
+      ptn = document.getElementById('play-pause');
+      see = document.getElementById('seekBar');
+
+      // ptn.addEventListener('click', play, false);
+      see.addEventListener('change', visee, false);
+      v.addEventListener('timeupdate', timeUp, false);
+
+    }
+    function play() {
+      if (v.paused) {
+        v.play();
+        ptn.innerHTML = 'Pause';
+      } else {
+        v.pause();
+        ptn.innerHTML = 'Play';
+      }
+    }
+
+    function visee() {
+      var time = v.duration * (see.value / 100);
+      console.log(time);
+      v.currentTime = time;
+    }
+
+    function timeUp() {
+      var value = (100 / v.duration) * v.currentTime;
+      // 재생위치 값
+      see.value = value;
+
+      // 재생 시간 밀리세컨즈 단위로 변경 할것
+      var curmins = Math.floor(v.currentTime / 60);
+      var cursecs = Math.floor(v.currentTime - curmins * 60);
+      var durmins = Math.floor(v.duration / 60);
+      var dursecs = Math.floor(v.duration - durmins * 60);
+
+      if (cursecs < 10) {
+        cursecs = "0"+cursecs;
+      }
+      if (curmins < 10) {
+        curmins = "0"+curmins;
+      }
+      if (dursecs < 10) {
+        dursecs = "0"+dursecs;
+      }if (durmins < 10) {
+        durmins = "0"+durmins;
+      }
+      curtimetext.innerText = curmins+":"+cursecs;
+      durtimetext.innerText = durmins+":"+dursecs;
+    }
+
+    // 버튼 클릭시 canvas 이미지를 다운로드
+    var d = document.getElementById('down');
+    d.addEventListener('click', function() {
+      var url = canvas.toDataURL('image/png');
+      url = url.replace(/^data:image\/[^;]*/, 'data:application/octe-stream');
+      // url = url.replace(/^data:application\/octet-stream/, 'data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename=/');
+      var date = new Date();
+
+      var name = v.src.substring(v.src.lastIndexOf('/')+1, v.src.lastIndexOf('.'));
+
+      var a = document.createElement('a');
+      a.download = name+date.getFullYear()+date.getMonth()+date.getDate()+'.jpg';
+      a.href = url;
+      a.click();
+
+    })
+
+  </script>
+</html>

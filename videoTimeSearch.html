@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>video time search</title>
+  </head>
+  <body>
+    <div style="border:1px solid red">
+      <video src="/video/bingle.mp4" autoplay controls loop></video>
+      <canvas id="canvas" width="300" height="300" style="border:1px solid green"></canvas>
+    </div>
+  </body>
+
+  <script type="text/javascript">
+    var v = document.querySelector('video');
+    var c = document.querySelector('canvas');
+
+    v.addEventListener('loadedmetadata', function (){
+      c.width = v.videoWidth / 2;
+      c.height = v.videoHeight / 2;
+    });
+
+    v.addEventListener('play', function (){
+      var thum = c.getContext('2d');
+      var i = window.setInterval(function (){
+        thum.drawImage(v,0,0,c.width,c.height);
+      }, 41);
+
+    }, false);
+
+    v.addEventListener("pause", function(){
+      window.clearInterval(i);
+      }, false
+    );
+
+    v.addEventListener("ended", function(){
+      clearInterval(i);
+      }, false
+    );
+
+  </script>
+</html>
